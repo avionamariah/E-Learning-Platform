@@ -7,6 +7,87 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## How to Install and Run the E-Learning Platform
+
+This project is an e-learning platform built with Laravel that incorporates Role-Based Access Control (RBAC) to manage different user types: Admin, Teacher, and Student. The system supports CRUD operations for core features such as courses, quizzes, assignments, and student progress tracking.
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed on your system:
+
+* PHP (version 8.3.16 or higher is recommended)
+* Composer
+* MySQL (version 8.4.3 or higher is recommended)
+* Node.js and npm (or Yarn)
+
+### Installation Steps
+
+1.  **Clone the Repository:**
+    First, clone the project repository from GitHub:
+    ```bash
+    git clone [https://github.com/jeayuun/E-Learning-Platform.git](https://github.com/jeayuun/E-Learning-Platform.git)
+    cd E-Learning-Platform
+    ```
+
+2.  **Install Composer Dependencies:**
+    Install the PHP dependencies using Composer:
+    ```bash
+    composer install
+    ```
+
+3.  **Set Up Environment File:**
+    Copy the example environment file and generate an application key:
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+4.  **Configure Database:**
+    Open the newly created `.env` file and update the database connection details. Ensure your `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` are correctly set for your MySQL database.
+
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_database_name
+    DB_USERNAME=your_database_user
+    DB_PASSWORD=your_database_password
+    ```
+
+5.  **Run Database Migrations and Seeders:**
+    Execute the migrations to create the necessary tables in your database. The `--seed` flag will also run the database seeders, which can be used to populate initial data (like roles and a default admin user).
+    ```bash
+    php artisan migrate --seed
+    ```
+    *Note: The `spatie/laravel-permission` package is used for RBAC and is set up during seeding or through a dedicated controller to define roles and permissions.* 
+
+6.  **Install Node Dependencies and Compile Assets:**
+    Install the frontend dependencies using npm and compile the assets using Vite:
+    ```bash
+    npm install
+    npm run dev
+    # Or for production:
+    # npm run build
+    ```
+    *Tailwind CSS and Bootstrap are used for styling, and Vite is used for asset bundling.* 
+
+7.  **Start the Laravel Development Server:**
+    Finally, start the local development server:
+    ```bash
+    php artisan serve
+    ```
+
+    This will typically start the server at `http://127.0.0.1:8000`. You can access the application in your web browser at this address.
+
+### Default User Roles (if seeded)
+
+If the database was seeded, you might have default accounts for each role:
+
+* **Admin:** Full access to manage users, courses, quizzes, and assignments.
+* **Teacher:** Can create and manage courses, view student progress, and handle assignments and quizzes. 
+* **Student:** Can enroll in courses, view course materials, and submit assignments.
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
